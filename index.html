@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seni Çok Seviyorum</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap');
 
         body {
             margin: 0;
@@ -14,7 +14,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            /* Senin attığın o efsane mor uzay arka planının 4K kalitedeki hali */
+            background: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?q=100&w=1920') no-repeat center center/cover;
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
             position: relative;
@@ -23,7 +24,7 @@
         /* Uçuşan Kalpler */
         .bg-heart {
             position: absolute;
-            color: rgba(255, 75, 110, 0.3);
+            color: rgba(255, 75, 110, 0.5);
             font-size: 24px;
             animation: floatUp 6s linear infinite;
             bottom: -50px;
@@ -35,17 +36,19 @@
             100% { transform: translateY(-110vh) scale(1.3) rotate(360deg); opacity: 0; }
         }
 
-        /* Zarif Kart Tasarımı */
+        /* Zarif ve Şeffaf Cam Kart Tasarımı (Arka planı göstersin diye) */
         .card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.85); /* Hafif şeffaf */
+            backdrop-filter: blur(8px); /* Arkadaki uzayı flulaştırır, premium durur */
             padding: 40px 35px;
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             text-align: center;
             width: 380px;
             max-width: 85%;
             z-index: 10;
             transition: all 0.5s ease;
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         /* Başlık Efekti */
@@ -62,25 +65,20 @@
             100% { text-shadow: 0 0 15px rgba(255, 105, 180, 0.7); transform: scale(1.02); }
         }
 
-        /* Kedi ve Kalp Animasyonu (Asla Silinmez) */
+        /* Hareketli Kedi Resmi Alanı */
         .cat-container {
-            font-size: 65px;
             margin: 10px 0;
-            animation: catHeartbeat 1.2s infinite;
             display: inline-block;
         }
-
-        @keyframes catHeartbeat {
-            0% { transform: scale(1); }
-            20% { transform: scale(1.1); }
-            40% { transform: scale(1); }
-            60% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        
+        .cat-gif {
+            width: 120px;
+            border-radius: 10px;
         }
 
         .question {
             font-size: 20px;
-            color: #4a4a4a;
+            color: #222;
             margin: 15px 0 30px 0;
             font-weight: 600;
         }
@@ -100,7 +98,7 @@
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .btn-yes {
@@ -110,45 +108,44 @@
 
         .btn-yes:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 42, 84, 0.3);
+            box-shadow: 0 8px 20px rgba(255, 42, 84, 0.4);
         }
 
         .btn-no {
             background-color: #f0f0f0;
-            color: #666;
+            color: #444;
         }
 
-        /* Aşk Mektubu ve Lale Tasarımı (Gizli Bölüm) */
+        /* Aşk Cümlesi ve Lale Tasarımı */
         .flower-frame {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-radius: 16px;
             margin: 15px 0;
-            box-shadow: 0 10px 25px rgba(255, 75, 110, 0.2);
+            box-shadow: 0 10px 25px rgba(255, 75, 110, 0.3);
             animation: fadeIn 1s ease forwards;
         }
 
         .romantic-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            color: #555;
-            line-height: 1.7;
+            font-family: 'Caveat', cursive;
+            font-size: 28px;
+            color: #ff2a54;
+            line-height: 1.4;
             margin: 15px 0 25px 0;
-            font-style: italic;
             opacity: 0;
-            animation: fadeIn 1.5s ease forwards 0.5s; /* Metin biraz gecikmeli, zarifçe gelir */
+            animation: fadeIn 1.5s ease forwards 0.5s; 
         }
 
         .final-badge {
-            background: rgba(255, 75, 110, 0.1);
+            background: rgba(255, 75, 110, 0.15);
             color: #ff2a54;
             padding: 10px 30px;
             border-radius: 50px;
             display: inline-block;
             font-weight: 600;
-            font-size: 15px;
-            border: 1px solid rgba(255, 75, 110, 0.2);
+            font-size: 16px;
+            border: 1px solid rgba(255, 75, 110, 0.3);
             opacity: 0;
             animation: fadeIn 1.5s ease forwards 1s;
         }
@@ -157,6 +154,19 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Sayaç Tasarımı */
+        .timer-display {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 26px;
+            color: #ff2a54;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 2px solid #ff4b6e;
+        }
     </style>
 </head>
 <body>
@@ -164,7 +174,9 @@
     <div class="card" id="mainCard">
         <h1 class="title">Diclemm</h1>
         
-        <div class="cat-container" id="catMedia">😻💓</div>
+        <div class="cat-container" id="catMedia">
+            <img src="https://media.tenor.com/DICXvN17Z9oAAAAi/peach-cat-kiss.gif" class="cat-gif" alt="Öpücük Kedi">
+        </div>
         
         <p class="question" id="textQuestion">Beni seviyor musun?</p>
         
@@ -188,33 +200,59 @@
         }
         setInterval(createHeart, 400);
 
-        // EVET Butonuna basıldığında açılacak o özel, zarif ekran
+        // EVET Butonuna basıldığında
         function selectYes() {
             document.getElementById('catMedia').style.display = 'none';
             document.getElementById('textQuestion').style.display = 'none';
             
-            // Buradaki yazı onun kalbine dokunacak şekilde özel yazıldı
             document.getElementById('btnContainer').innerHTML = `
                 <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
                     <h2 style="font-family: 'Caveat', cursive; color: #ff4b6e; font-size: 34px; margin: 0;">İyi ki varsın...</h2>
                     <img class="flower-frame" src="https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=600" alt="Pembe Laleler">
+                    
                     <p class="romantic-text">
-                        Sana ilk baktığım an, içimde bir şeylerin sonsuza dek değiştiğini hissetmiştim. 
-                        Gülüşün, bakışın ve o güzel kalbin beni her gün sana yeniden aşık ediyor. 
-                        Hayatıma kattığın her renk, bana verdiğin her güzel his için teşekkür ederim. 
-                        Sen benim en değerli varlığım, en güzel şansımsın...
+                        "Bir kız var, ona o kadar bağlanmışım ki..."
                     </p>
-                    <div class="final-badge">Seni Çok Seviyorum 💖</div>
+                    
+                    <div class="final-badge">Sonsuza Dek 💖</div>
                 </div>
             `;
         }
 
-        // HAYIR Butonuna basıldığında
+        // HAYIR Butonuna basıldığında (10 Saniyelik Sayaç Başlar)
         function selectNo() {
             document.getElementById('catMedia').style.display = 'none';
-            document.getElementById('textQuestion').innerHTML = "Üzdün... 💔";
-            document.getElementById('textQuestion').style.color = "#888";
-            document.getElementById('btnContainer').innerHTML = ""; 
+            document.getElementById('textQuestion').innerHTML = "Düşünmek için son şansın...";
+            
+            let btnContainer = document.getElementById('btnContainer');
+            btnContainer.innerHTML = `<div id="timer" class="timer-display">00:00:10:000</div>`;
+            
+            let startTime = Date.now();
+            let endTime = startTime + 10000;
+
+            let timerInterval = setInterval(() => {
+                let now = Date.now();
+                let remaining = endTime - now;
+                
+                if (remaining <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('timer').innerHTML = "00:00:00:000";
+                    document.getElementById('textQuestion').innerHTML = "Süren doldu! Artık mecburen Evet diyeceksin 🤭";
+                    
+                    // Süre bitince sadece Evet butonu gelir
+                    setTimeout(() => {
+                        btnContainer.innerHTML = `<button class="btn-yes" onclick="selectYes()" style="width: 100%; animation: premiumGlow 2s infinite alternate;">Evet ❤️</button>`;
+                    }, 1500);
+                } else {
+                    let hours = Math.floor(remaining / 3600000);
+                    let minutes = Math.floor((remaining % 3600000) / 60000);
+                    let seconds = Math.floor((remaining % 60000) / 1000);
+                    let ms = remaining % 1000;
+                    
+                    document.getElementById('timer').innerHTML = 
+                        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(ms).padStart(3, '0')}`;
+                }
+            }, 10); // 10 milisaniyede bir güncellenir (sanise akışı için)
         }
     </script>
 
