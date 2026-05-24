@@ -65,54 +65,35 @@
 
         @keyframes premiumGlow {
             0% {
-                text-shadow: 0 0 5px rgba(255, 175, 189, 0.5), 
-                             0 0 10px rgba(255, 75, 110, 0.3);
+                text-shadow: 0 0 5px rgba(255, 105, 180, 0.5), 0 0 10px rgba(255, 105, 180, 0.3);
                 transform: scale(1);
             }
             100% {
-                text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
-                             0 0 20px rgba(255, 175, 189, 0.8), 
-                             0 0 30px rgba(255, 75, 110, 0.6), 
-                             0 0 40px rgba(255, 42, 84, 0.4);
-                transform: scale(1.03);
+                text-shadow: 0 0 10px rgba(255, 105, 180, 0.8), 0 0 20px rgba(255, 105, 180, 0.5);
+                transform: scale(1.02);
             }
         }
 
         .question {
-            font-family: 'Caveat', cursive;
-            font-size: 28px;
-            color: #555;
-            margin: 0 0 20px 0;
+            font-size: 22px;
+            color: #4a4a4a;
+            margin-bottom: 30px;
+            font-style: italic;
         }
 
-        /* Kedi ve Görsel Alanı */
-        .image-container {
-            height: 180px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .image-container img {
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Butonlar */
         .btn-container {
             display: flex;
             justify-content: center;
             gap: 20px;
         }
 
-        .btn {
+        button {
             padding: 12px 30px;
             font-size: 16px;
-            font-weight: 600;
             border: none;
             border-radius: 50px;
             cursor: pointer;
+            font-weight: 600;
             transition: all 0.2s ease;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
@@ -123,74 +104,79 @@
         }
 
         .btn-yes:hover {
-            transform: scale(1.08);
             background-color: #ff2a54;
+            transform: scale(1.05);
         }
 
         .btn-no {
-            background-color: #f3f3f3;
+            background-color: #f0f0f0;
             color: #666;
         }
 
         .btn-no:hover {
-            background-color: #e5e5e5;
+            background-color: #e0e0e0;
+        }
+
+        /* Çiçek Resmi Alanı */
+        .flower-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
 
-    <div id="heart-container"></div>
-
-    <div class="card">
+    <div class="card" id="mainCard">
         <h1 class="title">Diclemm</h1>
-        <p class="question">Beni seviyor musun?</p>
+        <p class="question" id="textQuestion">Beni seviyor musun?</p>
         
-        <div class="image-container">
-            <img id="cat-img" src="https://media.tenor.com/7gK_Tq0A_mUAAAAi/mochi-mochi-peach-cat-kiss.gif" alt="Öpücük Atan Kedi">
-        </div>
-
-        <div class="btn-container">
-            <button class="btn btn-yes" onclick="selectYes()">Evet ❤️</button>
-            <button class="btn btn-no" id="no-btn" onclick="selectNo()">Hayır</button>
+        <div class="btn-container" id="btnContainer">
+            <button class="btn-yes" onclick="selectYes()">Evet ❤️</button>
+            <button class="btn-no" onclick="selectNo()">Hayır</button>
         </div>
     </div>
 
     <script>
-        function selectYes() {
-            document.querySelector('.question').innerText = "Ben de seni çok seviyorum! 🌷";
-            document.getElementById('cat-img').src = "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?q=80&w=500&auto=format&fit=crop"; 
-            document.getElementById('cat-img').style.borderRadius = "12px";
-            
-            document.getElementById('no-btn').style.display = 'none';
-            
-            for(let i=0; i<30; i++) {
-                setTimeout(createHeart, i * 100);
-            }
-        }
-
-        function selectNo() {
-            document.querySelector('.question').innerText = "Üzdün... 💔";
-            document.getElementById('cat-img').src = "https://media.tenor.com/bKID4fUu6g4AAAAi/sad-cat.gif";
-        }
-
+        // Arka plandaki kalpleri oluşturan fonksiyon
         function createHeart() {
-            const container = document.getElementById('heart-container');
             const heart = document.createElement('div');
             heart.classList.add('bg-heart');
             heart.innerHTML = '❤️';
-            
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 4 + 's'; 
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
             heart.style.fontSize = Math.random() * 20 + 15 + 'px';
-            
-            container.appendChild(heart);
+            document.body.appendChild(heart);
 
             setTimeout(() => {
                 heart.remove();
             }, 6000);
         }
+        setInterval(createHeart, 400);
 
-        setInterval(createHeart, 500);
+        // Evet butonuna basınca ne olacak?
+        function selectYes() {
+            document.getElementById('textQuestion').innerHTML = "Ben de seni çok seviyorum! 🌷";
+            
+            // Senin videondaki çiçek resmini ve kilitli evet butonunu buraya yerleştiriyoruz
+            document.getElementById('btnContainer').innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+                    <img class="flower-img" src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=500" alt="Çiçek">
+                    <button class="btn-yes" style="cursor: default; width: 80%; pointer-events: none;">Evet ❤️</button>
+                </div>
+            `;
+        }
+
+        // Hayır butonuna basınca ne olacak? (Burada butonlar tamamen kayboluyor!)
+        function selectNo() {
+            document.getElementById('textQuestion').innerHTML = "Üzdün... 💔";
+            // Buton konteynerını tamamen temizliyoruz, böylece geri basma şansı kalmıyor!
+            document.getElementById('btnContainer').innerHTML = "";
+        }
     </script>
+
 </body>
 </html>
