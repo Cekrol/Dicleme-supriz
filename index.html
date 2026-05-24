@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beni Seviyor Musun?</title>
+    <title>Seni Çok Seviyorum</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
         body {
             margin: 0;
             padding: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,10 +20,10 @@
             position: relative;
         }
 
-        /* Arka plandaki uçuşan kalpler */
+        /* Uçuşan Kalpler */
         .bg-heart {
             position: absolute;
-            color: rgba(255, 75, 110, 0.4);
+            color: rgba(255, 75, 110, 0.3);
             font-size: 24px;
             animation: floatUp 6s linear infinite;
             bottom: -50px;
@@ -31,81 +31,86 @@
         }
 
         @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(1) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-110vh) scale(1.3) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) scale(1.3) rotate(360deg); opacity: 0; }
         }
 
-        /* Ana Kart Tasarımı */
+        /* Zarif Kart Tasarımı */
         .card {
-            background: white;
-            padding: 35px 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 35px;
             border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             text-align: center;
             width: 380px;
-            max-width: 90%;
+            max-width: 85%;
             z-index: 10;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
         }
 
-        /* Kaliteli Parlama Efekti */
+        /* Başlık Efekti */
         .title {
             font-family: 'Caveat', cursive;
-            font-size: 44px;
+            font-size: 48px;
             color: #ff2a54;
-            margin: 0 0 5px 0;
+            margin: 0 0 10px 0;
             animation: premiumGlow 2s ease-in-out infinite alternate;
         }
 
         @keyframes premiumGlow {
-            0% {
-                text-shadow: 0 0 5px rgba(255, 105, 180, 0.5), 0 0 10px rgba(255, 105, 180, 0.3);
-                transform: scale(1);
-            }
-            100% {
-                text-shadow: 0 0 10px rgba(255, 105, 180, 0.8), 0 0 20px rgba(255, 105, 180, 0.5);
-                transform: scale(1.02);
-            }
+            0% { text-shadow: 0 0 5px rgba(255, 105, 180, 0.4); transform: scale(1); }
+            100% { text-shadow: 0 0 15px rgba(255, 105, 180, 0.7); transform: scale(1.02); }
+        }
+
+        /* Kedi ve Kalp Animasyonu (Asla Silinmez) */
+        .cat-container {
+            font-size: 65px;
+            margin: 10px 0;
+            animation: catHeartbeat 1.2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes catHeartbeat {
+            0% { transform: scale(1); }
+            20% { transform: scale(1.1); }
+            40% { transform: scale(1); }
+            60% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .question {
-            font-size: 22px;
+            font-size: 20px;
             color: #4a4a4a;
-            margin-bottom: 30px;
-            font-style: italic;
+            margin: 15px 0 30px 0;
+            font-weight: 600;
         }
 
+        /* Butonlar */
         .btn-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         button {
-            padding: 12px 30px;
+            padding: 14px 35px;
             font-size: 16px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .btn-yes {
-            background-color: #ff4b6e;
+            background: linear-gradient(45deg, #ff4b6e, #ff2a54);
             color: white;
         }
 
         .btn-yes:hover {
-            background-color: #ff2a54;
-            transform: scale(1.05);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 42, 84, 0.3);
         }
 
         .btn-no {
@@ -113,18 +118,44 @@
             color: #666;
         }
 
-        .btn-no:hover {
-            background-color: #e0e0e0;
+        /* Aşk Mektubu ve Lale Tasarımı (Gizli Bölüm) */
+        .flower-frame {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin: 15px 0;
+            box-shadow: 0 10px 25px rgba(255, 75, 110, 0.2);
+            animation: fadeIn 1s ease forwards;
         }
 
-        /* Çiçek Resmi Alanı */
-        .flower-img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin: 15px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .romantic-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+            margin: 15px 0 25px 0;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 0.5s; /* Metin biraz gecikmeli, zarifçe gelir */
+        }
+
+        .final-badge {
+            background: rgba(255, 75, 110, 0.1);
+            color: #ff2a54;
+            padding: 10px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid rgba(255, 75, 110, 0.2);
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -132,6 +163,9 @@
 
     <div class="card" id="mainCard">
         <h1 class="title">Diclemm</h1>
+        
+        <div class="cat-container" id="catMedia">😻💓</div>
+        
         <p class="question" id="textQuestion">Beni seviyor musun?</p>
         
         <div class="btn-container" id="btnContainer">
@@ -141,42 +175,49 @@
     </div>
 
     <script>
-        // Arka plandaki kalpleri oluşturan fonksiyon
+        // Arka plan kalpleri
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('bg-heart');
             heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            heart.style.animationDuration = Math.random() * 3 + 4 + 's';
             heart.style.fontSize = Math.random() * 20 + 15 + 'px';
             document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 6000);
+            setTimeout(() => { heart.remove(); }, 6000);
         }
         setInterval(createHeart, 400);
 
-        // Evet butonuna basınca ne olacak?
+        // EVET Butonuna basıldığında açılacak o özel, zarif ekran
         function selectYes() {
-            document.getElementById('textQuestion').innerHTML = "Ben de seni çok seviyorum! 🌷";
+            document.getElementById('catMedia').style.display = 'none';
+            document.getElementById('textQuestion').style.display = 'none';
             
-            // Senin videondaki çiçek resmini ve kilitli evet butonunu buraya yerleştiriyoruz
+            // Buradaki yazı onun kalbine dokunacak şekilde özel yazıldı
             document.getElementById('btnContainer').innerHTML = `
                 <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-                    <img class="flower-img" src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=500" alt="Çiçek">
-                    <button class="btn-yes" style="cursor: default; width: 80%; pointer-events: none;">Evet ❤️</button>
+                    <h2 style="font-family: 'Caveat', cursive; color: #ff4b6e; font-size: 34px; margin: 0;">İyi ki varsın...</h2>
+                    <img class="flower-frame" src="https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=600" alt="Pembe Laleler">
+                    <p class="romantic-text">
+                        Sana ilk baktığım an, içimde bir şeylerin sonsuza dek değiştiğini hissetmiştim. 
+                        Gülüşün, bakışın ve o güzel kalbin beni her gün sana yeniden aşık ediyor. 
+                        Hayatıma kattığın her renk, bana verdiğin her güzel his için teşekkür ederim. 
+                        Sen benim en değerli varlığım, en güzel şansımsın...
+                    </p>
+                    <div class="final-badge">Seni Çok Seviyorum 💖</div>
                 </div>
             `;
         }
 
-        // Hayır butonuna basınca ne olacak? (Burada butonlar tamamen kayboluyor!)
+        // HAYIR Butonuna basıldığında
         function selectNo() {
-            document.getElementById('textQuestion').innerHTML = "Üzüldüm... 💔";
-            // Buton konteynerını tamamen temizliyoruz, böylece geri basma şansı kalmıyor!
-            document.getElementById('btnContainer').innerHTML = "";
+            document.getElementById('catMedia').style.display = 'none';
+            document.getElementById('textQuestion').innerHTML = "Üzdün... 💔";
+            document.getElementById('textQuestion').style.color = "#888";
+            document.getElementById('btnContainer').innerHTML = ""; 
         }
     </script>
 
 </body>
 </html>
+
