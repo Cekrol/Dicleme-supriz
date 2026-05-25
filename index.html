@@ -49,8 +49,8 @@
             z-index: 10;
             transition: all 0.5s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative; /* İçindeki yıldızlar için */
-            overflow: hidden; /* Yıldızları kutu içinde tutmak için */
+            position: relative;
+            overflow: hidden;
         }
 
         /* Mor Kutu İçindeki Küçük Yıldızlar */
@@ -67,14 +67,14 @@
             100% { transform: scale(1.2); opacity: 1; }
         }
 
-        /* Diclemm Başlığı - Kırmızı ve Parlayan */
+        /* Başlık - Kırmızı ve Parlayan */
         .title {
             font-family: 'Caveat', cursive;
-            font-size: 50px;
+            font-size: 46px;
             color: #FF0000; /* Tam kırmızı */
             margin: 0 0 10px 0;
             animation: premiumGlow 2s ease-in-out infinite alternate;
-            position: relative; /* Kart yıldızlarının altında kalması için */
+            position: relative;
             z-index: 12;
         }
 
@@ -99,7 +99,7 @@
 
         .question {
             font-size: 21px;
-            color: #fff; /* Mor kutu üzerinde okunması için beyaz */
+            color: #fff;
             margin: 15px 0 30px 0;
             font-weight: 600;
             line-height: 1.4;
@@ -222,7 +222,7 @@
                 const card = document.getElementById('mainCard');
                 const star = document.createElement('div');
                 star.classList.add('card-star');
-                const size = Math.random() * 4 + 1; // Farklı boyutlar
+                const size = Math.random() * 4 + 1;
                 star.style.width = size + 'px';
                 star.style.height = size + 'px';
                 star.style.top = Math.random() * 100 + '%';
@@ -230,13 +230,12 @@
                 star.style.animationDelay = Math.random() * 2 + 's';
                 card.appendChild(star);
             }
-            // Kart yıldızlarını oluştur
             for (let i = 0; i < 50; i++) {
                 createCardStar();
             }
         </script>
 
-        <h1 class="title">Diclemm</h1>
+        <h1 class="title">Prensesim❤️❤️‍🔥</h1>
         
         <div class="cat-container" id="catMedia">
             <img src="https://media.tenor.com/DICXvN17Z9oAAAAi/peach-cat-kiss.gif" class="cat-gif" alt="Öpücük Kedi">
@@ -251,8 +250,20 @@
 
         <p class="thought-text" id="thoughtText" style="display: none;">Düşünmek için son şansın...</p>
         <div class="timer-container" id="timerContainer" style="display: none;">
-            <div id="timer" class="timer-display">00:00:05:000</div>
+            <div id="timerDisplay" class="timer-display">00:00:05:000</div>
         </div>
+
+        <div id="finalContainer" style="display: none; flex-direction: column; align-items: center; width: 100%; position: relative; z-index: 12;">
+            <h2 style="font-family: 'Caveat', cursive; color: #fff; font-size: 38px; margin: 0;">İyi ki varsın...</h2>
+            <img class="flower-frame" src="https://images.unsplash.com/photo-1562690868-60bbe7293e94?q=100&w=1080" alt="Pembe Lale">
+            
+            <p class="romantic-text">
+                "gece gökyüzü yıldızlarla dolar ama ben birtane görüyorum"
+            </p>
+            
+            <div class="final-badge">Sonsuza Dek 💖</div>
+        </div>
+
     </div>
 
     <script>
@@ -270,44 +281,31 @@
         setInterval(createHeart, 400);
 
         function selectYes() {
+            // Gereksiz her şeyi gizle
             document.getElementById('catMedia').style.display = 'none';
             document.getElementById('textQuestion').style.display = 'none';
-            
-            // Diğer kısımları da temizleyelim
+            document.getElementById('btnContainer').style.display = 'none';
             document.getElementById('thoughtText').style.display = 'none';
             document.getElementById('timerContainer').style.display = 'none';
             
-            // Kart yıldızlarını gösterelim (içeriği eklemeden önce temizlemek gerekebilir)
-            const card = document.getElementById('mainCard');
-            // Kartın içindeki script ve yıldızlar kaybolmamalı, ama başlığı silebiliriz
-            // En temiz yol, sadece `mainCard`'ın içeriğini değiştirmek yerine, bir `innerHTML` eklemek:
-            card.innerHTML += `
-                <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-                    <h2 style="font-family: 'Caveat', cursive; color: #fff; font-size: 38px; margin: 0; z-index: 12; position: relative;">İyi ki varsın...</h2>
-                    <img class="flower-frame" src="https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=600" alt="Pembe Laleler" style="z-index: 11; position: relative;">
-                    
-                    <p class="romantic-text" style="z-index: 11; position: relative;">
-                        "gece gökyüzü yıldızlarla dolar ama ben birtane görüyorum"
-                    </p>
-                    
-                    <div class="final-badge" style="z-index: 11; position: relative;">Sonsuza Dek 💖</div>
-                </div>
-            `;
+            // Kutlama kısmını göster (Artık üst üste binme veya çiftleşme olmayacak)
+            document.getElementById('finalContainer').style.display = 'flex';
         }
 
         function selectNo() {
+            // Kedi ve butonları gizle
             document.getElementById('catMedia').style.display = 'none';
+            document.getElementById('btnContainer').style.display = 'none';
+            
+            // Soru yazısını değiştir
             document.getElementById('textQuestion').innerHTML = "Düşünmek için son şansın...";
             
-            // Sayaç kısımlarını gösterelim
+            // Sayaç kısımlarını göster
             document.getElementById('thoughtText').style.display = 'block';
             document.getElementById('timerContainer').style.display = 'block';
             
-            let btnContainer = document.getElementById('btnContainer');
-            btnContainer.innerHTML = `<div id="timer" class="timer-display">00:00:05:000</div>`;
-            
             let startTime = Date.now();
-            let endTime = startTime + 5000; // 5 Saniyeye düşürüldü
+            let endTime = startTime + 5000; // 5 Saniye
 
             let timerInterval = setInterval(() => {
                 let now = Date.now();
@@ -315,12 +313,13 @@
                 
                 if (remaining <= 0) {
                     clearInterval(timerInterval);
-                    document.getElementById('timer').innerHTML = "00:00:00:000";
+                    document.getElementById('timerDisplay').innerHTML = "00:00:00:000";
                     document.getElementById('thoughtText').innerHTML = "Süren doldu! Artık mecburen Evet diyeceksin 🤭";
                     
                     setTimeout(() => {
-                        // "Hayır" butonu kaybolur
-                        btnContainer.innerHTML = `<button class="btn-yes" onclick="selectYes()" style="width: 100%; animation: premiumGlow 2s infinite alternate;">Evet ❤️‍🔥🔥</button>`;
+                        // Süre bitince sadece Evet butonunu göster
+                        document.getElementById('btnContainer').innerHTML = `<button class="btn-yes" onclick="selectYes()" style="width: 100%; animation: premiumGlow 2s infinite alternate;">Evet ❤️‍🔥🔥</button>`;
+                        document.getElementById('btnContainer').style.display = 'flex';
                     }, 1000);
                 } else {
                     let hours = Math.floor(remaining / 3600000);
@@ -328,7 +327,7 @@
                     let seconds = Math.floor((remaining % 60000) / 1000);
                     let ms = remaining % 1000;
                     
-                    document.getElementById('timer').innerHTML = 
+                    document.getElementById('timerDisplay').innerHTML = 
                         `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(ms).padStart(3, '0')}`;
                 }
             }, 10);
@@ -337,4 +336,3 @@
 
 </body>
 </html>
-
