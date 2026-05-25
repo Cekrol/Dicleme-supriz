@@ -52,7 +52,7 @@
         }
 
         @keyframes text-heart-anim {
-            0= { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+            0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
             20% { opacity: 1; }
             80% { opacity: 1; }
             100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0; }
@@ -224,12 +224,9 @@
 
         .flower-frame {
             width: 100%;
-            height: auto; /* Genişlik değiştikçe boyunu otomatik ayarlar */
-            max-width: 800px; /* Büyük ekranlarda aşırı büyümeyi engeller */
-            display: block; /* Altındaki boşlukları siler */
-            margin: 0 auto; /* Yatayda ortalar */
+            max-height: 200px;
+            object-fit: cover;
             border-radius: 10px;
-            object-fit: cover; /* Gerekirse kırparak kutuyu doldurur */
         }
 
         .romantic-text {
@@ -308,7 +305,7 @@
             <h2 style="font-family: 'Caveat', cursive; color: #fff; font-size: 34px; margin: 0;">daha iyileri icin söz veriyorum 🙃...</h2>
             
             <div class="flower-box" style="width: 90%;">
-                <img class="flower-frame" src="lale_yeni.png" alt="Yeni Pembe Lale">
+                <img class="flower-frame" src="https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=1080" alt="Pembe Lale">
             </div>
             
             <p class="romantic-text">
@@ -322,7 +319,7 @@
 
     <script>
         const textContainer = document.getElementById('text-heart-container');
-        const textContentStr = "Diclem❤️‍🔥🤍";
+        const textContentStr = "Diclem❤️❤️‍🔥";
         const totalTexts = 100;
 
         function createTextHeart() {
