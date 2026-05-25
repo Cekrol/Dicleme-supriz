@@ -21,14 +21,15 @@
             position: relative;
         }
 
-        /* Eklediğin Yazılı Kalp Efekti İçin CSS */
+        /* Yazılı Kalp Efekti - GİZLİ VE EN ÖNDE */
         .text-heart-box {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0.65); /* Mobil ekran için ideal boyut */
-            z-index: 1; /* Ana kartın arkasında durması için */
+            z-index: 9999; /* KUTUNUN ÜSTÜNE ÇIKMASI İÇİN ARTTIRILDI */
             pointer-events: none; /* Tıklamaları engellememesi için */
+            display: none; /* BAŞLANGIÇTA GİZLENDİ, SADECE EVETE BASINCA ÇIKACAK */
         }
 
         #text-heart-container {
@@ -279,7 +280,7 @@
         <h1 class="title">Prensesim❤️❤️‍🔥</h1>
         
         <div class="cat-container" id="catMedia">
-            <img src="https://media.tenor.com/DICXvN17Z9oAAAAi/peach-cat-kiss.gif" class="cat-gif" alt="Öpücük Kedi">
+            <img src="https://i.pinimg.com/originals/79/2e/76/792e76f9be2ea2f2debb91e3b3f20251.gif" class="cat-gif" alt="Öpücük Kedi">
         </div>
         
         <p class="question" id="textQuestion">Beni seviyor musun?</p>
@@ -308,7 +309,7 @@
     </div>
 
     <script>
-        // Yeni Eklenen "I love you" Kalp JS Kodu
+        // "I love you" Kalp JS Kodu
         const textContainer = document.getElementById('text-heart-container');
         const textContentStr = "I love you";
         const totalTexts = 120; 
@@ -336,9 +337,9 @@
                 textContainer.appendChild(span);
             }
         }
-        createTextHeart(); // Kalbi başlat
+        createTextHeart(); // Kalbi oluşturur ama CSS ile gizli kalır
 
-        // Eski Arka Plan Kalpleri (Senin eski efektin)
+        // Arka Plan Kalpleri
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('bg-heart');
@@ -361,6 +362,9 @@
             
             // Kutlama kısmını göster 
             document.getElementById('finalContainer').style.display = 'flex';
+
+            // I LOVE YOU KALBİNİ ÖNDE GÖSTER
+            document.querySelector('.text-heart-box').style.display = 'block';
         }
 
         function selectNo() {
