@@ -15,7 +15,7 @@
             justify-content: center;
             align-items: center;
             /* Mavi-Mor Uzay Arka Planı */
-            background: linear-gradient(rgba(15, 12, 41, 0.6), rgba(48, 43, 99, 0.6), rgba(36, 36, 62, 0.6)), url('https://images.unsplash.com/photo-1534447677768-be436bb09401?q=100&w=1920') no-repeat center center/cover;
+            background: linear-gradient(rgba(15, 12, 41, 0.6), rgba(48, 43, 99, 0.6), rgba(36, 36, 62, 0.6)), url('https://images.unsplash.com/photo-1534447677768-be436bb09401?q=100&w=3840') no-repeat center center/cover;
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
             position: relative;
@@ -39,7 +39,7 @@
         /* Kutu Tasarımı - Mor ve Şeffaf */
         .card {
             background: rgba(106, 13, 173, 0.75); /* Mor Kutu */
-            backdrop-filter: blur(8px); 
+            backdrop-filter: blur(10px); 
             padding: 40px 35px;
             border-radius: 24px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.6);
@@ -49,15 +49,33 @@
             z-index: 10;
             transition: all 0.5s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative; /* İçindeki yıldızlar için */
+            overflow: hidden; /* Yıldızları kutu içinde tutmak için */
         }
 
-        /* Diclemm Başlığı - Tam Kırmızı */
+        /* Mor Kutu İçindeki Küçük Yıldızlar */
+        .card-star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: cardStarFlash 2s infinite alternate;
+        }
+
+        @keyframes cardStarFlash {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* Diclemm Başlığı - Kırmızı ve Parlayan */
         .title {
             font-family: 'Caveat', cursive;
-            font-size: 48px;
+            font-size: 50px;
             color: #FF0000; /* Tam kırmızı */
             margin: 0 0 10px 0;
             animation: premiumGlow 2s ease-in-out infinite alternate;
+            position: relative; /* Kart yıldızlarının altında kalması için */
+            z-index: 12;
         }
 
         @keyframes premiumGlow {
@@ -69,18 +87,24 @@
         .cat-container {
             margin: 10px 0;
             display: inline-block;
+            position: relative;
+            z-index: 11;
         }
         
         .cat-gif {
-            width: 120px;
+            width: 130px;
             border-radius: 10px;
+            position: relative;
         }
 
         .question {
-            font-size: 20px;
+            font-size: 21px;
             color: #fff; /* Mor kutu üzerinde okunması için beyaz */
             margin: 15px 0 30px 0;
             font-weight: 600;
+            line-height: 1.4;
+            position: relative;
+            z-index: 11;
         }
 
         /* Butonlar */
@@ -88,6 +112,8 @@
             display: flex;
             justify-content: center;
             gap: 15px;
+            position: relative;
+            z-index: 11;
         }
 
         button {
@@ -104,6 +130,7 @@
         .btn-yes {
             background: linear-gradient(45deg, #ff4b6e, #ff2a54);
             color: white;
+            box-shadow: 0 4px 15px rgba(255, 42, 84, 0.3);
         }
 
         .btn-yes:hover {
@@ -116,62 +143,99 @@
             color: #444;
         }
 
-        /* Evet Denildiğinde Açılan Kısım */
-        .flower-frame {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 16px;
-            margin: 15px 0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            animation: fadeIn 1s ease forwards;
-        }
-
-        .romantic-text {
-            font-family: 'Caveat', cursive;
-            font-size: 28px;
-            color: #fff;
-            line-height: 1.4;
-            margin: 15px 0 25px 0;
-            opacity: 0;
-            animation: fadeIn 1.5s ease forwards 0.5s; 
-        }
-
-        .final-badge {
-            background: rgba(255, 255, 255, 0.15);
-            color: #fff;
-            padding: 10px 30px;
-            border-radius: 50px;
-            display: inline-block;
-            font-weight: 600;
+        /* Geri Sayım Metni */
+        .thought-text {
+            color: rgba(255, 255, 255, 0.8);
             font-size: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            opacity: 0;
-            animation: fadeIn 1.5s ease forwards 1s;
+            font-weight: 400;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 11;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Sayaç */
+        .timer-container {
+            position: relative;
+            z-index: 11;
+            margin-bottom: 20px;
         }
 
-        /* 5 Saniyelik Sayaç */
         .timer-display {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 26px;
+            font-size: 28px;
             color: #fff;
             font-weight: bold;
             letter-spacing: 2px;
             background: rgba(0, 0, 0, 0.3);
-            padding: 10px 15px;
-            border-radius: 10px;
-            border: 2px solid #fff;
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            display: inline-block;
+        }
+
+        /* Evet Tıklandığında Açılan Kısım */
+        .flower-frame {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 18px;
+            margin: 20px 0;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1.2s ease forwards;
+        }
+
+        .romantic-text {
+            font-family: 'Caveat', cursive;
+            font-size: 30px;
+            color: #fff;
+            line-height: 1.5;
+            margin: 20px 0 30px 0;
+            opacity: 0;
+            animation: fadeIn 1.8s ease forwards 0.6s; 
+        }
+
+        .final-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 12px 35px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            opacity: 0;
+            animation: fadeIn 1.8s ease forwards 1.2s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
     <div class="card" id="mainCard">
+        <script>
+            function createCardStar() {
+                const card = document.getElementById('mainCard');
+                const star = document.createElement('div');
+                star.classList.add('card-star');
+                const size = Math.random() * 4 + 1; // Farklı boyutlar
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                card.appendChild(star);
+            }
+            // Kart yıldızlarını oluştur
+            for (let i = 0; i < 50; i++) {
+                createCardStar();
+            }
+        </script>
+
         <h1 class="title">Diclemm</h1>
         
         <div class="cat-container" id="catMedia">
@@ -183,6 +247,11 @@
         <div class="btn-container" id="btnContainer">
             <button class="btn-yes" onclick="selectYes()">Evet ❤️‍🔥🔥</button>
             <button class="btn-no" onclick="selectNo()">Hayır</button>
+        </div>
+
+        <p class="thought-text" id="thoughtText" style="display: none;">Düşünmek için son şansın...</p>
+        <div class="timer-container" id="timerContainer" style="display: none;">
+            <div id="timer" class="timer-display">00:00:05:000</div>
         </div>
     </div>
 
@@ -204,16 +273,24 @@
             document.getElementById('catMedia').style.display = 'none';
             document.getElementById('textQuestion').style.display = 'none';
             
-            document.getElementById('btnContainer').innerHTML = `
+            // Diğer kısımları da temizleyelim
+            document.getElementById('thoughtText').style.display = 'none';
+            document.getElementById('timerContainer').style.display = 'none';
+            
+            // Kart yıldızlarını gösterelim (içeriği eklemeden önce temizlemek gerekebilir)
+            const card = document.getElementById('mainCard');
+            // Kartın içindeki script ve yıldızlar kaybolmamalı, ama başlığı silebiliriz
+            // En temiz yol, sadece `mainCard`'ın içeriğini değiştirmek yerine, bir `innerHTML` eklemek:
+            card.innerHTML += `
                 <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-                    <h2 style="font-family: 'Caveat', cursive; color: #fff; font-size: 34px; margin: 0;">İyi ki varsın...</h2>
-                    <img class="flower-frame" src="https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=600" alt="Pembe Laleler">
+                    <h2 style="font-family: 'Caveat', cursive; color: #fff; font-size: 38px; margin: 0; z-index: 12; position: relative;">İyi ki varsın...</h2>
+                    <img class="flower-frame" src="https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=600" alt="Pembe Laleler" style="z-index: 11; position: relative;">
                     
-                    <p class="romantic-text">
-                        "Bir kız var, ona o kadar bağlanmışım ki..."
+                    <p class="romantic-text" style="z-index: 11; position: relative;">
+                        "gece gökyüzü yıldızlarla dolar ama ben birtane görüyorum"
                     </p>
                     
-                    <div class="final-badge">Sonsuza Dek 💖</div>
+                    <div class="final-badge" style="z-index: 11; position: relative;">Sonsuza Dek 💖</div>
                 </div>
             `;
         }
@@ -221,6 +298,10 @@
         function selectNo() {
             document.getElementById('catMedia').style.display = 'none';
             document.getElementById('textQuestion').innerHTML = "Düşünmek için son şansın...";
+            
+            // Sayaç kısımlarını gösterelim
+            document.getElementById('thoughtText').style.display = 'block';
+            document.getElementById('timerContainer').style.display = 'block';
             
             let btnContainer = document.getElementById('btnContainer');
             btnContainer.innerHTML = `<div id="timer" class="timer-display">00:00:05:000</div>`;
@@ -235,9 +316,10 @@
                 if (remaining <= 0) {
                     clearInterval(timerInterval);
                     document.getElementById('timer').innerHTML = "00:00:00:000";
-                    document.getElementById('textQuestion').innerHTML = "Süren doldu! Artık mecburen Evet diyeceksin 🤭";
+                    document.getElementById('thoughtText').innerHTML = "Süren doldu! Artık mecburen Evet diyeceksin 🤭";
                     
                     setTimeout(() => {
+                        // "Hayır" butonu kaybolur
                         btnContainer.innerHTML = `<button class="btn-yes" onclick="selectYes()" style="width: 100%; animation: premiumGlow 2s infinite alternate;">Evet ❤️‍🔥🔥</button>`;
                     }, 1000);
                 } else {
@@ -255,3 +337,4 @@
 
 </body>
 </html>
+
