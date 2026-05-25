@@ -280,14 +280,14 @@
         <h1 class="title">Prensesim❤️❤️‍🔥</h1>
         
         <div class="cat-container" id="catMedia">
-            <img src="https://i.pinimg.com/originals/79/2e/76/792e76f9be2ea2f2debb91e3b3f20251.gif" class="cat-gif" alt="Öpücük Kedi">
+            <img src="https://media.tenor.com/gO_6_g9Co7gAAAAi/peach-goma.gif" class="cat-gif" alt="Öpücük Kedi">
         </div>
         
         <p class="question" id="textQuestion">Beni seviyor musun?</p>
         
         <div class="btn-container" id="btnContainer">
             <button class="btn-yes" onclick="selectYes()">Evet ❤️‍🔥🔥</button>
-            <button class="btn-no" onclick="selectNo()">Hayır</button>
+            <button class="btn-no" onclick="selectNo()">Hayır❌</button>
         </div>
 
         <p class="thought-text" id="thoughtText" style="display: none;">Düşünmek için son şansın...</p>
@@ -296,11 +296,11 @@
         </div>
 
         <div id="finalContainer" style="display: none; flex-direction: column; align-items: center; width: 100%; position: relative; z-index: 12;">
-            <h2 style="font-family: 'Caveat', cursive; color: #fff; font-size: 38px; margin: 0;">İyi ki varsın...</h2>
+            <h2 style="font-family: 'Caveat', cursive; color: #fff; font-size: 38px; margin: 0;">Benim için çok ama çok değerlisin...</h2>
             <img class="flower-frame" src="https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=1080" alt="Pembe Lale">
             
             <p class="romantic-text">
-                "gece gökyüzü yıldızlarla dolar ama ben birtane görüyorum"
+                "𝖌𝖊𝖈𝖊 𝖌𝖚𝖐𝖞𝖚𝖟𝖚 𝖞ı𝖑𝖉ı𝖟𝖑𝖆𝖗𝖑𝖆 𝖉𝖔𝖑𝖆𝖗 𝖆𝖒𝖆 𝖇𝖊𝖓 𝖇𝖎𝖗𝖙𝖆𝖓𝖊 𝖌𝖔𝖗𝖚𝖞𝖔𝖗𝖚𝖒"
             </p>
             
             <div class="final-badge">Sonsuza Dek 💖</div>
@@ -337,7 +337,7 @@
                 textContainer.appendChild(span);
             }
         }
-        createTextHeart(); // Kalbi oluşturur ama CSS ile gizli kalır
+        createTextHeart(); 
 
         // Arka Plan Kalpleri
         function createHeart() {
@@ -353,34 +353,28 @@
         setInterval(createHeart, 400);
 
         function selectYes() {
-            // Gereksiz her şeyi gizle
             document.getElementById('catMedia').style.display = 'none';
             document.getElementById('textQuestion').style.display = 'none';
             document.getElementById('btnContainer').style.display = 'none';
             document.getElementById('thoughtText').style.display = 'none';
             document.getElementById('timerContainer').style.display = 'none';
             
-            // Kutlama kısmını göster 
             document.getElementById('finalContainer').style.display = 'flex';
 
-            // I LOVE YOU KALBİNİ ÖNDE GÖSTER
             document.querySelector('.text-heart-box').style.display = 'block';
         }
 
         function selectNo() {
-            // Kedi ve butonları gizle
             document.getElementById('catMedia').style.display = 'none';
             document.getElementById('btnContainer').style.display = 'none';
             
-            // Soru yazısını değiştir
             document.getElementById('textQuestion').innerHTML = "Düşünmek için son şansın...";
             
-            // Sayaç kısımlarını göster
             document.getElementById('thoughtText').style.display = 'block';
             document.getElementById('timerContainer').style.display = 'block';
             
             let startTime = Date.now();
-            let endTime = startTime + 5000; // 5 Saniye
+            let endTime = startTime + 5000; 
 
             let timerInterval = setInterval(() => {
                 let now = Date.now();
@@ -392,7 +386,6 @@
                     document.getElementById('thoughtText').innerHTML = "Süren doldu! Artık mecburen Evet diyeceksin 🤭";
                     
                     setTimeout(() => {
-                        // Süre bitince sadece Evet butonunu göster
                         document.getElementById('btnContainer').innerHTML = `<button class="btn-yes" onclick="selectYes()" style="width: 100%; animation: premiumGlow 2s infinite alternate;">Evet ❤️‍🔥🔥</button>`;
                         document.getElementById('btnContainer').style.display = 'flex';
                     }, 1000);
